@@ -24,6 +24,5 @@ export class SideNavDirective implements AfterViewChecked {
                 });
             }
         });
-        
     }
 }
