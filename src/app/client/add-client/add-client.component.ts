@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
-import {ClientService} from "../../services/client/client.service";
+import {ClientService} from "../../shared/services/client/client.service";
 
 @Component({
   selector: 'app-add-client',

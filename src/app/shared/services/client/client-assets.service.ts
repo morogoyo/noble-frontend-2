@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Client} from '../../interface/client';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {
   ACCESS_CONTROL_ALLOW_HEADERS,
@@ -11,8 +10,9 @@ import {
 import {HttpJWTInterceptorService} from '../httpInterceptor/http-jwt-interceptor.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {AdminUrl} from '../../interface/adminUrl';
-import {REST_API_SERVER} from '../../app.constants';
+import {REST_API_SERVER} from '../../../app.constants';
+import {AdminUrl} from '../../interfaces/adminUrl';
+import {Client} from '../../interfaces/client';
 
 @Injectable({
   providedIn: 'root'

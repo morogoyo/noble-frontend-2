@@ -1,12 +1,14 @@
-import { Component } from '@angular/core'
+import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
+import {AuthService} from '../../shared/services/authentication/auth-service.service';
+import {Router} from '@angular/router';
 
 
 @Component({
     templateUrl: './login-2.component.html'
 })
 
-export class Login2Component {
+export class Login2Component implements OnInit{
     loginForm: FormGroup;
 
     submitForm(): void {
@@ -16,13 +18,19 @@ export class Login2Component {
         }
     }
 
-    constructor(private fb: FormBuilder) {
+    constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) {
     }
 
     ngOnInit(): void {
-        this.loginForm = this.fb.group({
-            userName: [ null, [ Validators.required ] ],
-            password: [ null, [ Validators.required ] ]
-        });
+        if (this.authService.getAuthenticatedToken().includes('Bearer')) {
+            console.log('the init method fired and page has been re routhed to view page');
+            this.router.navigate(['client', 'view']).then();
+
+            this.loginForm = this.fb.group({
+                userName: [null, [Validators.required]],
+                password: [null, [Validators.required]]
+            });
+
+        }
     }
-}    
+}

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from "@angular/forms";
-import {ClientService} from "../../services/client/client.service";
+import {ClientService} from "../../shared/services/client/client.service";
 import {Router} from "@angular/router";
-import {LeadsService} from "../../services/leads/leads.service";
+import {LeadsService} from "../../shared/services/leads/leads.service";
 
 @Component({
   selector: 'app-add-leads',

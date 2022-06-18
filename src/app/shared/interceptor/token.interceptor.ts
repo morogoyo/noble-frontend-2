@@ -1,23 +1,36 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {  AuthService  } from '../services/authentication/auth-service.service';
+import {Observable} from 'rxjs';
 
-import { AuthenticationService } from '../services/authentication.service';
+@Injectable({
+    providedIn: 'root'
+})
+export class HttpJWTInterceptorService implements HttpInterceptor {
 
-@Injectable()
-export class JwtInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: AuthenticationService) { }
+    constructor(private authService: AuthService ) {
+    }
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let currentUser = this.authenticationService.currentUserValue;
-        if (currentUser && currentUser.token) {
-            request = request.clone({
+    httpOptions;
+
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+        const token = this.authService.getAuthenticatedToken();
+        const username = this.authService.getAuthenticatedUser();
+
+
+        if (token && username) {
+            console.log(token, username);
+            const newReq = req.clone({
                 setHeaders: {
-                    Authorization: `Bearer ${currentUser.token}`
+                    Authorization: token
                 }
             });
+            return next.handle(newReq); // edited request headers
         }
 
-        return next.handle(request);
+        return next.handle(req); // non-edited request headers
     }
+
+
 }
