@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LeadsService} from "../../services/leads/leads.service";
+import {LeadsService} from "../../shared/services/leads/leads.service";
 
 @Component({
   selector: 'app-read-leads',

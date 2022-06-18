@@ -9,8 +9,8 @@ import {
   CONTENT_TYPE,
   ORIGIN
 } from '../authentication/auth-service.service';
-import {REST_API_SERVER} from '../../app.constants';
-import { Client } from '../../interface/client';
+import {REST_API_SERVER} from '../../../app.constants';
+import { Client } from '../../interfaces/client';
 import {Router} from '@angular/router';
 
 @Injectable({

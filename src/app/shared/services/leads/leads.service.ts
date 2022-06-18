@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
-import {Client} from '../../interface/client';
+import {Client} from '../../interfaces/client';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {REST_API_SERVER}  from '../../app.constants';
+import {REST_API_SERVER}  from '../../../app.constants';
 import {
   ACCESS_CONTROL_ALLOW_HEADERS,
   ACCESS_CONTROL_ALLOW_METHODS,

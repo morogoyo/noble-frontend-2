@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {User} from '../../interface/user';
+import {User} from '../../interfaces/user';
 import {map} from 'rxjs/operators';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {API_URL_AUTH, REST_API_SERVER} from '../../app.constants';
+import {API_URL_AUTH, REST_API_SERVER} from '../../../app.constants';
 import {Router} from '@angular/router';
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from "@angular/forms";
-import {LeadsService} from "../../services/leads/leads.service";
+import {LeadsService} from "../../shared/services/leads/leads.service";
 import {Router} from "@angular/router";
 
 @Component({
