@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AddClientComponent } from './add-client/add-client.component';
 import { ViewClientComponent } from './view-client/view-client.component';
 import { ClientAssetsComponent } from './client-assets/client-assets.component';
+import {ClientRoutes} from './client-routes.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -13,7 +15,9 @@ import { ClientAssetsComponent } from './client-assets/client-assets.component';
     ClientAssetsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ClientRoutes,
+    ReactiveFormsModule
   ]
 })
 export class ClientModule { }

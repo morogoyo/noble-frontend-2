@@ -9,7 +9,12 @@ import {Router} from '@angular/router';
 })
 
 export class Login2Component implements OnInit{
-    loginForm: FormGroup;
+    // loginForm: FormGroup;
+
+    public loginForm: FormGroup = this.fb.group({
+        userName: [null, Validators.compose([Validators.required])],
+        password: [null, Validators.compose([Validators.required])]
+    });
 
     submitForm(): void {
         for (const i in this.loginForm.controls) {
@@ -33,4 +38,23 @@ export class Login2Component implements OnInit{
 
         }
     }
+
+
+    onClickSubmitAuthorization() {
+        // console.warn(this.loginForm.value);
+        this.authService.login(this.loginForm.value)
+            .subscribe(d => {
+                    this.router.navigate(["client", "view"]).then();
+                    console.log('User LoggedIn');
+
+                },
+                error => {
+                    console.log(error)
+                },
+                () => {
+                }
+            );
+
+    }
+
 }

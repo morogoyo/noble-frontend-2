@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
-import {Router} from "@angular/router";
-import {ClientService} from "../../shared/services/client/client.service";
+import {FormBuilder} from '@angular/forms';
+import {Router} from '@angular/router';
+import {ClientService} from '../../shared/services/client/client.service';
 
 @Component({
   selector: 'app-add-client',
@@ -38,11 +38,11 @@ export class AddClientComponent implements OnInit {
     this.httpService.addClient(this.insertClient.value)
       .subscribe(d => {
           console.log('Added new User');
-          //todo need to figure out where to redirect this call
-          this.router.navigate(['/'])
+          // todo need to figure out where to redirect this call
+          this.router.navigate(['/']);
         },
         error => {
-          console.log(error)
+          console.log(error);
         },
         () => {
         }

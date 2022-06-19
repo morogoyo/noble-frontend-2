@@ -4,6 +4,8 @@ import { AddLeadsComponent } from './add-leads/add-leads.component';
 import { DeleteLeadsComponent } from './delete-leads/delete-leads.component';
 import { ReadLeadsComponent } from './read-leads/read-leads.component';
 import { UpdateLeadsComponent } from './update-leads/update-leads.component';
+import {LeadsRoutes} from './leads-routes.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -15,7 +17,9 @@ import { UpdateLeadsComponent } from './update-leads/update-leads.component';
     UpdateLeadsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    LeadsRoutes,
+    ReactiveFormsModule,
   ]
 })
 export class LeadsModule { }
