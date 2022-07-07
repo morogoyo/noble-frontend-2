@@ -21,7 +21,7 @@ RUN npm install chart.js --save --legacy-peer-deps
 RUN npm install -g @angular/cli
 
 RUN npm install --legacy-peer-deps --force
-RUN npm run build
+RUN npm run build --prod
 
 
 ### STAGE 2:RUN ###
@@ -29,7 +29,7 @@ RUN npm run build
 FROM nginx:1.17.1-alpine AS ngi
 # Copying compiled code and nginx config to different folder
 # NOTE: This path may change according to your project's output folder
-COPY --from=build /app/dist/nds-front /usr/share/nginx/html
+COPY --from=build /app/dist/nds-front /usr/share/nginx/htmld
 #COPY /nginx-custom.conf /etc/nginx/conf.d/nginx.conf
 # Exposing a port, here it means that inside the container
 # the app will be using Port 80 while running
