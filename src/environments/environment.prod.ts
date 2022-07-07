@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
-  API_URL_AUTH : 'http://noble_back:8080/authenticate',
-  TODO_JPA_API_URL : 'http://noble_back:8080/jpa',
-  REST_API_SERVER : 'http://noble_back:8080',
+  API_URL_AUTH : 'http://172.23.0.11:8080/authenticate',
+  TODO_JPA_API_URL : 'http://172.23.0.11:8080/jpa',
+  REST_API_SERVER : 'http://172.23.0.11:8080',
   TOKEN : 'token',
   AUTHENTICATED_USER : 'authenticatedUser',
   CONTENT_TYPE : 'application/json',

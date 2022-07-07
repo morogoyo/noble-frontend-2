@@ -29,7 +29,7 @@ RUN npm run build --prod
 FROM nginx:1.17.1-alpine AS ngi
 # Copying compiled code and nginx config to different folder
 # NOTE: This path may change according to your project's output folder
-COPY --from=build /app/dist/nds-front /usr/share/nginx/htmld
+COPY --from=build /app/dist/nds-front /usr/share/nginx/html
 #COPY /nginx-custom.conf /etc/nginx/conf.d/nginx.conf
 # Exposing a port, here it means that inside the container
 # the app will be using Port 80 while running

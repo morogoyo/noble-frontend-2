@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import {AUTHENTICATED_USER, AuthService, TOKEN} from '../shared/services/authentication/auth-service.service';
+import { AuthService} from '../shared/services/authentication/auth-service.service';
 
 
 
