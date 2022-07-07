@@ -17,8 +17,8 @@ import { FullLayoutComponent } from './layouts/full-layout/full-layout.component
 
 import { NgChartjsModule } from 'ng-chartjs';
 import { ThemeConstantService } from './shared/services/theme-constant.service';
-import {ClientModule} from "./client/client.module";
-import {LeadsModule} from "./leads/leads.module";
+import {ClientModule} from './client/client.module';
+import {LeadsModule} from './leads/leads.module';
 
 registerLocaleData(en);
 

@@ -16,10 +16,11 @@ export class ViewClientComponent implements OnInit {
     this.getAllClients();
   }
 
-  getAllClients() {
+  getAllClients(): void {
     this.clientService.getClients().subscribe((data) => {
+      console.log('this is the getAllClients() that is giving me shit ');
       console.log( data);
       this.clients = data;
-    })
+    });
   }
 }

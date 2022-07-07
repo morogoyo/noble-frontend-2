@@ -14,18 +14,23 @@ export class HttpJWTInterceptorService implements HttpInterceptor {
   httpOptions;
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+    console.log('this interceptor is working');
     const token = this.authService.getAuthenticatedToken();
+    console.log(token);
     const username = this.authService.getAuthenticatedUser();
+    console.log(username);
+    console.log(token, username);
 
 
-    if (token && username) {
+    if (true) {
+      console.log('..............................??????????????????????????????//////////////////////////////.......................>>>>>>>>>>>>>..........')
       console.log(token, username);
       const newReq = req.clone({
         setHeaders: {
-          Authorization: token
+          Authorization: 'Bearer ' + token
         }
       });
+
       return next.handle(newReq); // edited request headers
     }
 

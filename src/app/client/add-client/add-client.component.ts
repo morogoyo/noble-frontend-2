@@ -33,7 +33,7 @@ export class AddClientComponent implements OnInit {
 
   testVariable = [];
 
-  onClickSubmitClientData() {
+  onClickSubmitClientData(): void {
     console.warn(this.insertClient.value);
     this.httpService.addClient(this.insertClient.value)
       .subscribe(d => {
