@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LeadsService} from "../../shared/services/leads/leads.service";
+import {LeadsService} from '../../shared/services/leads/leads.service';
 
 @Component({
   selector: 'app-read-leads',
@@ -17,10 +17,10 @@ export class ReadLeadsComponent implements OnInit {
     this.getAllLeads();
   }
 
-  getAllLeads() {
+  getAllLeads(): void {
     this.leadService.getLeads().subscribe((data) => {
       console.log(data);
       this.leads = data;
-    })
+    });
   }
 }

@@ -11,16 +11,16 @@ export class AuthGuard implements CanActivate {
     private authService: AuthService
   ) { }
 noble;
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Promise<boolean> {
     const currentUser = this.authService.user;
     if (this.authService.getAuthenticatedToken()) {
       console.log('Auth guard still needs logic');
       console.log(this.authService.getAuthenticatedUser(), this.authService.getAuthenticatedToken());
-      console.log(this.authService.userValue);
+      console.log('THIS IS THE VALUE OF THE USER ' + this.authService.userValue);
       // return this.router.navigate(['client','view'], {queryParams: {returnUrl: state.url}});
       return true;
     }else{
-      return this.router.navigate(['account', 'signin'], { queryParams: { returnUrl: state.url } });
+      return this.router.navigate(['authentication', 'login-2'], { queryParams: { returnUrl: state.url } });
     }
   }
 }

@@ -43,7 +43,7 @@ export class AuthService {
       'Content-Type': CONTENT_TYPE,
       'Access-Control-Allow-Origin': ACCESS_CONTROL_ALLOW_ORIGIN,
       'Access-Control-Allow-Methods': ACCESS_CONTROL_ALLOW_METHODS,
-      'Access-Control-Allow-Headers': ACCESS_CONTROL_ALLOW_HEADERS
+      'Access-Control-Allow-Headers': ACCESS_CONTROL_ALLOW_HEADERS,
     })
   };
 
@@ -68,21 +68,24 @@ export class AuthService {
       .pipe(map(data => {
         localStorage.setItem(AUTHENTICATED_USER, `${data.userName}`);
         localStorage.setItem(TOKEN, `Bearer ${data.token}`);
+        sessionStorage.setItem(AUTHENTICATED_USER, `${data.userName}`);
+        sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+
         this.userSubject.next(data);
         // this.startRefreshTokenTimer();  Need to fix the refresh token method
         return data;
       }));
-
+    console.log(this.authCall);
     return this.authCall;
   }
 
-  logout() {
+  logout(): void {
     console.log('logging out');
     localStorage.setItem(AUTHENTICATED_USER, '');
     localStorage.setItem(TOKEN, '');
   }
 
-  refreshToken() {
+  refreshToken(): any {
     return this.http.post<any>(`${REST_API_SERVER}/refresh`, {}, {withCredentials: true})
       .pipe(map((user) => {
         this.userSubject.next(user);
@@ -93,7 +96,7 @@ export class AuthService {
 
 
   // need to fix VVVVVVVVVV  method
-  private startRefreshTokenTimer() {
+  private startRefreshTokenTimer(): void {
     // parse json object from base64 encoded jwt token
     const jwtToken = JSON.parse(atob(this.userValue.jwtToken.split('.')[1]));
     //
@@ -103,16 +106,16 @@ export class AuthService {
     this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
   }
 
-  private stopRefreshTokenTimer() {
+  private stopRefreshTokenTimer(): void {
     clearTimeout(this.refreshTokenTimeout);
   }
 
 
-  getAuthenticatedUser() {
+  getAuthenticatedUser(): string  {
     return localStorage.getItem(AUTHENTICATED_USER);
   }
 
-  getAuthenticatedToken() {
+  getAuthenticatedToken(): string {
     if (this.getAuthenticatedUser()) {
       return localStorage.getItem(TOKEN);
     }

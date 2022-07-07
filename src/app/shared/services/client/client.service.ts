@@ -1,7 +1,7 @@
 import { Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable} from 'rxjs';
-import { HttpJWTInterceptorService } from '../httpInterceptor/http-jwt-interceptor.service';
+
 import {
   ACCESS_CONTROL_ALLOW_HEADERS,
   ACCESS_CONTROL_ALLOW_METHODS,
@@ -12,6 +12,7 @@ import {
 import {REST_API_SERVER} from '../../../app.constants';
 import { Client } from '../../interfaces/client';
 import {Router} from '@angular/router';
+import {HttpJWTInterceptorService} from '../httpInterceptor/http-jwt-interceptor.service';
 
 @Injectable({
   providedIn: 'root',
@@ -46,11 +47,12 @@ export class ClientService {
   public getClients(): Observable<any> {
 
     this.uri = '/client/all';
+    console.log('this is the getClient() before  the call');
 
-    //
-    return this.httpClient.get<any>(this.REST_API_SERVER + this.uri, this.httpOptions);
-      // return Observable.create();  // only for testing a return
-
+    const call = this.httpClient.get<any>(this.REST_API_SERVER + this.uri, this.httpOptions);
+    console.log('this is the getClient()  after the call');
+    console.log('this is the actual call to the backend' + call);
+    return call;
   }
 
   public addClient(data): Observable<Client> {

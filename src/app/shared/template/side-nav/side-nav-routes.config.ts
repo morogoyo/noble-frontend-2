@@ -8,30 +8,45 @@ export const ROUTES: SideNavInterface[] = [
         icon: 'dashboard',
         submenu: []
     },
-    {
-        path: '',
-        title: 'Multi Level Menu',
-        iconType: 'nzIcon',
-        iconTheme: 'outline',
-        icon: 'appstore',
-        submenu: [
-            { 
+
+            {
                 path: '',
-                title: 'Level 1', 
-                iconType: '', 
+                title: 'Client Menu',
+                iconType: '',
                 icon: '',
                 iconTheme: '',
                 submenu: [
                     {
-                        path: '',
-                        title: 'Level 2',
+                        path: 'client/view',
+                        title: 'Clients',
                         iconType: 'nzIcon',
                         iconTheme: 'outline',
                         icon: '',
                         submenu: []
-                    }    
-                ] 
-            }
-        ]
+                    }, {
+                        path: 'client/add',
+                        title: 'Add Client',
+                        iconType: 'nzIcon',
+                        iconTheme: 'outline',
+                        icon: '',
+                        submenu: []
+                    }, {
+                        path: 'client/admin-url',
+                        title: 'Assets',
+                        iconType: 'nzIcon',
+                        iconTheme: 'outline',
+                        icon: '',
+                        submenu: []
+                    },
+                ]
+            },
+
+    {
+        path: 'client/view',
+        title: 'client View',
+        iconType: 'nzIcon',
+        iconTheme: 'outline',
+        icon: 'dashboard',
+        submenu: []
     }
-]    
+];
