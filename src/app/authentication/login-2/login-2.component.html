@@ -9,7 +9,7 @@
                     <nz-card>
                         <h2 class="m-t-20">Sign In</h2>
                         <p class="m-b-30">Enter your credential to get access</p>
-                        <form nz-form [formGroup]="loginForm" nzLayout="vertical" class="login-form" (ngSubmit)="submitForm()">
+                        <form nz-form [formGroup]="loginForm" nzLayout="vertical" class="login-form" (ngSubmit)="onClickSubmitAuthorization()">
                             <nz-form-item>
                                 <nz-form-label nzRequired nzFor="userName">Username</nz-form-label>
                                 <nz-form-control nzErrorTip="Please input your username!">
