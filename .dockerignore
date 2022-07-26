@@ -1,6 +1,6 @@
 .git
 .firebase
-.editrconfig
+.editorconfig
 /node_modules
 /node_modules-copy
 /e2e

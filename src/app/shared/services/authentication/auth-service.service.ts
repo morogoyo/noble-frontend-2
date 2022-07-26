@@ -28,9 +28,7 @@ export class AuthService {
   userCreds: User;
 
 
-  // url = "http://localhost:8080/authenticate";
   httpOptions = {
-    // tslint:disable-next-line:max-line-length
     headers: new HttpHeaders({
       'Content-Type': environment.CONTENT_TYPE,
       'Access-Control-Allow-Origin': environment.ACCESS_CONTROL_ALLOW_ORIGIN,
