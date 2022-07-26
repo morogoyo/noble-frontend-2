@@ -1,18 +1,10 @@
 import { Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable} from 'rxjs';
-
-import {
-  ACCESS_CONTROL_ALLOW_HEADERS,
-  ACCESS_CONTROL_ALLOW_METHODS,
-  ACCESS_CONTROL_ALLOW_ORIGIN,
-  CONTENT_TYPE,
-  ORIGIN
-} from '../authentication/auth-service.service';
-import {REST_API_SERVER} from '../../../app.constants';
 import { Client } from '../../interfaces/client';
 import {Router} from '@angular/router';
 import {HttpJWTInterceptorService} from '../httpInterceptor/http-jwt-interceptor.service';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +15,7 @@ export class ClientService {
   // todo need to figure out how to pass in headers dont have clear example
   // long time since I have done it
 
-  private REST_API_SERVER = `${REST_API_SERVER}`;
+  private REST_API_SERVER = environment.REST_API_SERVER;
   private uri: string;
   private client: Client;
 
@@ -31,11 +23,11 @@ export class ClientService {
   httpOptions = {
     // tslint:disable-next-line:max-line-length
     headers: new HttpHeaders({
-      'Content-Type': CONTENT_TYPE,
-      'Access-Control-Allow-Origin': ACCESS_CONTROL_ALLOW_ORIGIN,
-      Origin: ORIGIN,
-      'Access-Control-Allow-Methods': ACCESS_CONTROL_ALLOW_METHODS,
-      'Access-Control-Allow-Headers': ACCESS_CONTROL_ALLOW_HEADERS })
+      'Content-Type': environment.CONTENT_TYPE,
+      'Access-Control-Allow-Origin': environment.ACCESS_CONTROL_ALLOW_ORIGIN,
+      Origin: environment.ORIGIN,
+      'Access-Control-Allow-Methods': environment.ACCESS_CONTROL_ALLOW_METHODS,
+      'Access-Control-Allow-Headers': environment.ACCESS_CONTROL_ALLOW_HEADERS })
   };
 
   constructor(private httpClient: HttpClient, private httpIntercept: HttpJWTInterceptorService, private router: Router) {

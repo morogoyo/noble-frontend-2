@@ -3,17 +3,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../../interfaces/user';
 import {map} from 'rxjs/operators';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {API_URL_AUTH, REST_API_SERVER} from '../../../app.constants';
 import {Router} from '@angular/router';
+import {environment} from '../../../../environments/environment';
 
-
-export const TOKEN = 'token';
-export const AUTHENTICATED_USER = 'authenticatedUser';
-export const CONTENT_TYPE = 'application/json';
-export const ACCESS_CONTROL_ALLOW_ORIGIN = '*';
-export const ORIGIN = 'http://localhost:4200';
-export const ACCESS_CONTROL_ALLOW_METHODS = 'PUT, DELETE, POST, GET, OPTIONS';
-export const ACCESS_CONTROL_ALLOW_HEADERS = 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Accept';
 
 
 @Injectable({
@@ -36,14 +28,12 @@ export class AuthService {
   userCreds: User;
 
 
-  // url = "http://localhost:8080/authenticate";
   httpOptions = {
-    // tslint:disable-next-line:max-line-length
     headers: new HttpHeaders({
-      'Content-Type': CONTENT_TYPE,
-      'Access-Control-Allow-Origin': ACCESS_CONTROL_ALLOW_ORIGIN,
-      'Access-Control-Allow-Methods': ACCESS_CONTROL_ALLOW_METHODS,
-      'Access-Control-Allow-Headers': ACCESS_CONTROL_ALLOW_HEADERS,
+      'Content-Type': environment.CONTENT_TYPE,
+      'Access-Control-Allow-Origin': environment.ACCESS_CONTROL_ALLOW_ORIGIN,
+      'Access-Control-Allow-Methods': environment.ACCESS_CONTROL_ALLOW_METHODS,
+      'Access-Control-Allow-Headers': environment.ACCESS_CONTROL_ALLOW_HEADERS,
     })
   };
 
@@ -62,14 +52,14 @@ export class AuthService {
 
   login(data) {
     this.userCreds = {username: data.userName, password: data.password};
-    this.authCall = this.http.post<any>(`${API_URL_AUTH}`,
+    this.authCall = this.http.post<any>(environment.API_URL_AUTH,
       this.userCreds
       , this.httpOptions)
       .pipe(map(data => {
-        localStorage.setItem(AUTHENTICATED_USER, `${data.userName}`);
-        localStorage.setItem(TOKEN, `Bearer ${data.token}`);
-        sessionStorage.setItem(AUTHENTICATED_USER, `${data.userName}`);
-        sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+        localStorage.setItem(environment.AUTHENTICATED_USER, `${data.userName}`);
+        localStorage.setItem(environment.TOKEN, `Bearer ${data.token}`);
+        sessionStorage.setItem(environment.AUTHENTICATED_USER, `${data.userName}`);
+        sessionStorage.setItem(environment.TOKEN, `Bearer ${data.token}`);
 
         this.userSubject.next(data);
         // this.startRefreshTokenTimer();  Need to fix the refresh token method
@@ -81,13 +71,13 @@ export class AuthService {
 
   logout(): void {
     console.log('logging out');
-    localStorage.setItem(AUTHENTICATED_USER, '');
-    localStorage.setItem(TOKEN, '');
+    localStorage.setItem(environment.AUTHENTICATED_USER, '');
+    localStorage.setItem(environment.TOKEN, '');
   }
 
   refreshToken(): any {
-    return this.http.post<any>(`${REST_API_SERVER}/refresh`, {}, {withCredentials: true})
-      .pipe(map((user) => {
+    return this.http.post<any>(environment.REST_API_SERVER + '/refresh', {}, {withCredentials: true})
+        .pipe(map((user) => {
         this.userSubject.next(user);
         this.startRefreshTokenTimer();
         return user;
@@ -112,12 +102,12 @@ export class AuthService {
 
 
   getAuthenticatedUser(): string  {
-    return localStorage.getItem(AUTHENTICATED_USER);
+    return localStorage.getItem(environment.AUTHENTICATED_USER);
   }
 
   getAuthenticatedToken(): string {
     if (this.getAuthenticatedUser()) {
-      return localStorage.getItem(TOKEN);
+      return localStorage.getItem(environment.TOKEN);
     }
   }
 
