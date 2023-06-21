@@ -121,5 +121,8 @@
       }
     }
   },
-  "defaultProject": "enlink"
+  "defaultProject": "enlink",
+  "cli": {
+    "analytics": "4a89a4ff-bb1e-4ed7-b6de-cb61cd2e483d"
+  }
 }
